@@ -20,20 +20,6 @@ public class User {
     @Column(name = "user_id")
     private long Id;
 
-    @Override
-    public String toString() {
-        return "User{" +
-                "Id=" + Id +
-                ", name='" + name + '\'' +
-                ", email='" + email + '\'' +
-                ", password='" + password + '\'' +
-                ", phoneNumber=" + phoneNumber +
-                ", address='" + address + '\'' +
-                ", role='" + role + '\'' +
-                ", createDt='" + createDt + '\'' +
-                '}';
-    }
-
     @Column(nullable = false)
     private String name;
 
@@ -56,4 +42,21 @@ public class User {
 
     @Column(name = "create_dt", nullable = false)
     private String createDt;
+
+    @Override
+    public String toString() {
+        return "User{" +
+                "Id=" + Id +
+                ", name='" + name + '\'' +
+                ", email='" + email + '\'' +
+                ", password='" + password + '\'' +
+                ", phoneNumber=" + phoneNumber +
+                ", address='" + address + '\'' +
+                ", role='" + role + '\'' +
+                ", createDt='" + createDt + '\'' +
+                '}';
+    }
+
+
+
 }
