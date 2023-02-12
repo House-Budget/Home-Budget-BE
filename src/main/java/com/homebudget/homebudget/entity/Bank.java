@@ -1,5 +1,6 @@
 package com.homebudget.homebudget.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -27,7 +28,8 @@ public class Bank {
     @Column(nullable = false)
     private int amount;
 
-    @ManyToMany()
-    private List<Investment> investment;
+    @ManyToOne()
+    @Getter(onMethod = @__(@JsonIgnore))
+    private Investment investment;
 
 }

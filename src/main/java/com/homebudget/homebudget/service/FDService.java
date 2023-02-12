@@ -1,5 +1,6 @@
 package com.homebudget.homebudget.service;
 
+import com.homebudget.homebudget.entity.Bank;
 import com.homebudget.homebudget.entity.FD;
 import com.homebudget.homebudget.entity.Investment;
 import com.homebudget.homebudget.entity.User;
@@ -18,20 +19,34 @@ public class FDService {
 
     @Autowired
     UserRepository userRepository;
-    public void addToFD(long userId, FD data) {
+    public FD save(long userId, FD data) {
         User user = userRepository.findById(userId).get();
         Investment investment  = user.getInvestment();
         data.setInvestment(investment);
-        this.fdRepository.save(data);
+       return this.fdRepository.save(data);
     }
 
-    public List<FD> getFDs(long userId) {
+    public List<FD> getAllFD(long userId) {
         User user = this.userRepository.findById(userId).get();
         return user.getInvestment().getFds();
     }
+    public FD updateFD(long fdId, FD fdDetails ) {
+        FD fd = findById(fdId);
+        if (fd == null) {
+            return null;
+        }
+        User user = fd.getInvestment().getUser();
+        fd.setName(fdDetails.getName());
+        fd.setAmount(fdDetails.getAmount());
+        fd = save(user.getId(), fd);
+        return fd;
+    }
+    public FD findById(long id) {
+        return fdRepository.findById(id).orElse(null);
+    }
 
-//    public List<FD> getFD(long userId, long fdId) {
-//        User user = this.userRepository.findById(userId).get();
-//        return user.getInvestment().getFds();
-//    }
+    public void delete(FD fd) {
+        fdRepository.delete(fd);
+    }
+
 }

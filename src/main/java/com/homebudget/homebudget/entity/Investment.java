@@ -36,7 +36,7 @@ public class Investment {
     @OneToMany(mappedBy = "investment", cascade = CascadeType.ALL)
     private List<FD> fds = new ArrayList<>();
 
-    @ManyToMany(mappedBy = "investment", cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "investment", cascade = CascadeType.ALL)
     private List<Bank> banks = new ArrayList<>();
 
 //    @ManyToMany(mappedBy = "investment", cascade = CascadeType.ALL)
