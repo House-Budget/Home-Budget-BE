@@ -43,6 +43,17 @@ public class BankController {
 
     }
 
+    @GetMapping("/user/{id}/bank/total")
+    public int getTotalAmount(@PathVariable("id") long userId) throws Exception{
+        try{
+            return this.bankService.getTotalAmount(userId);
+        }
+        catch(Exception e){
+            throw e;
+        }
+
+    }
+
     @GetMapping("/bank/{id}")
     public  ResponseEntity<Bank>  getBank(@PathVariable("id") long id) throws Exception{
         Bank bank = bankService.findById(id);

@@ -41,6 +41,17 @@ public class FDController {
 
     }
 
+    @GetMapping("/user/{id}/fd/total")
+    public int getTotalAmount(@PathVariable("id") long userId) throws Exception{
+        try{
+            return this.fdService.getTotalAmount(userId);
+        }
+        catch(Exception e){
+            throw e;
+        }
+
+    }
+
     @GetMapping("/fd/{id}")
     public  ResponseEntity<FD>  getFD(@PathVariable("id") long id) throws Exception{
         FD fd = fdService.findById(id);

@@ -49,4 +49,11 @@ public class FDService {
         fdRepository.delete(fd);
     }
 
+    public int getTotalAmount(long userId) {
+        User user = this.userRepository.findById(userId).get();
+        List<FD> fds = user.getInvestment().getFds();
+        int totalAmount = 0;
+        for(FD fd : fds) totalAmount+=fd.getAmount();
+        return totalAmount;
+    }
 }

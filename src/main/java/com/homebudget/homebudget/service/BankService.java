@@ -6,7 +6,6 @@ import com.homebudget.homebudget.entity.User;
 import com.homebudget.homebudget.repository.BankRepository;
 import com.homebudget.homebudget.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -49,6 +48,14 @@ public class BankService {
 
     public void delete(Bank Bank) {
         bankRepository.delete(Bank);
+    }
+
+    public int getTotalAmount(long userId) {
+        User user = this.userRepository.findById(userId).get();
+        List<Bank> banks = user.getInvestment().getBanks();
+        int totalAmount = 0;
+        for(Bank bank : banks) totalAmount+=bank.getAmount();
+        return totalAmount;
     }
 
 }
