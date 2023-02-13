@@ -14,7 +14,7 @@
 	<name>home-budget</name>
 	<description>Project for Personal finance</description>
 	<properties>
-		<java.version>15.0.1</java.version>
+		<java.version>1.8.0</java.version>
 	</properties>
 	<dependencies>
 		<dependency>
@@ -109,8 +109,8 @@
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-compiler-plugin</artifactId>
 				<configuration>
-					<source>16</source>
-					<target>16</target>
+					<source>1.8</source>
+					<target>1.8</target>
 				</configuration>
 			</plugin>
 		</plugins>

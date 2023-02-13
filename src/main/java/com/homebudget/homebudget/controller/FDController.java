@@ -38,14 +38,14 @@ public class FDController {
 
     }
 
-    @GetMapping("/user/{id}/fd/{fdId}")
-    public List<FD> getFD(@PathVariable("id") long userId, @PathVariable("fdId") long fdId) throws Exception{
-        try{
-            return this.fdService.getFD(userId, fdId);
-        }
-        catch(Exception e){
-            throw e;
-        }
-
-    }
+//    @GetMapping("/user/{id}/fd/{fdId}")
+//    public List<FD> getFD(@PathVariable("id") long userId, @PathVariable("fdId") long fdId) throws Exception{
+//        try{
+//            return this.fdService.getFD(userId, fdId);
+//        }
+//        catch(Exception e){
+//            throw e;
+//        }
+//
+//    }
 }
