@@ -12,16 +12,18 @@ import javax.persistence.*;
 @NoArgsConstructor
 @AllArgsConstructor
 @Data
+@Entity
+@Table(name = "mutual_fund")
 public class MutualFund {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "mutualFund_id")
+    @Column(name = "mutual_fund_id")
     private long Id;
     @Column(nullable = false)
     private String name;
     @Column(nullable = false)
     private long Amount;
-    @Column(nullable = false)
+
     @ManyToOne
     @Getter(onMethod = @__(@JsonIgnore))
     private Investment investment;

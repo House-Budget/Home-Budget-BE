@@ -6,9 +6,10 @@ import com.homebudget.homebudget.entity.User;
 import com.homebudget.homebudget.repository.InsuranceRepository;
 import com.homebudget.homebudget.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
-
+@Service
 public class InsuranceServices {
     @Autowired
     private InsuranceRepository insuranceRepository;

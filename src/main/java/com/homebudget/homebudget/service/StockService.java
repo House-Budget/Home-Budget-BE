@@ -5,12 +5,9 @@ import com.homebudget.homebudget.entity.Stock;
 import com.homebudget.homebudget.entity.User;
 import com.homebudget.homebudget.repository.StockRepository;
 import com.homebudget.homebudget.repository.UserRepository;
-import com.sun.xml.internal.ws.api.message.ExceptionHasMessage;
-import com.sun.xml.internal.ws.api.message.Message;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.Collections;
 import java.util.List;
 
 @Service

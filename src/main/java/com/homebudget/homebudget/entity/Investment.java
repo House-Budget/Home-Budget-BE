@@ -27,25 +27,20 @@ public class Investment {
     @Getter(onMethod = @__(@JsonIgnore))
     private User user;
 
-//    @ManyToMany(mappedBy = "investment", cascade = CascadeType.ALL)
-//    private List<Stock> stocks = new ArrayList<>();
-//
-//    @ManyToMany(mappedBy = "investment", cascade = CascadeType.ALL)
-//    private List<MutualFund> mutualFunds = new ArrayList<>();
-
     @OneToMany(mappedBy = "investment", cascade = CascadeType.ALL)
     private List<FD> fds = new ArrayList<>();
-    @OneToMany(mappedBy = "investment", cascade = CascadeType.ALL)
-    private List<MutualFund> MutualFunds = new ArrayList<>();
-    @OneToMany(mappedBy = "investment", cascade = CascadeType.ALL)
-    private List<Stock> Stocks = new ArrayList<>();
 
     @OneToMany(mappedBy = "investment", cascade = CascadeType.ALL)
-    private List<Insurance> Insurances = new ArrayList<>();
+    private List<MutualFund> mutualFunds = new ArrayList<>();
+
+    @OneToMany(mappedBy = "investment", cascade = CascadeType.ALL)
+    private List<Stock> stocks = new ArrayList<>();
+
+    @OneToMany(mappedBy = "investment", cascade = CascadeType.ALL)
+    private List<Insurance> insurances = new ArrayList<>();
 
     @ManyToMany(mappedBy = "investment", cascade = CascadeType.ALL)
     private List<Bank> banks = new ArrayList<>();
 
-//    @ManyToMany(mappedBy = "investment", cascade = CascadeType.ALL)
-//    private List<Insurance> insurances = new ArrayList<>();
+
 }
