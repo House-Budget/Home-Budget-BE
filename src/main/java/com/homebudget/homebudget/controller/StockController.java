@@ -39,5 +39,9 @@ public class StockController {
         stockService.deleteStock(id);
         return ResponseEntity.ok("Stock deleted");
     }
+    @GetMapping("/user/{uid}/totalstockamt")
+    public int gettotalAmount(@PathVariable Long uid){
+        return stockService.getTotalAmount(uid);
+    }
 
 }

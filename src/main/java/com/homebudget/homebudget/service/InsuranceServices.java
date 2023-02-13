@@ -1,5 +1,6 @@
 package com.homebudget.homebudget.service;
 
+import com.homebudget.homebudget.entity.Bank;
 import com.homebudget.homebudget.entity.Insurance;
 import com.homebudget.homebudget.entity.Investment;
 import com.homebudget.homebudget.entity.User;
@@ -43,5 +44,12 @@ public class InsuranceServices {
         insurance.setName(updatedInsurance.getName());
         insurance.setAmount(updatedInsurance.getAmount());
         return insuranceRepository.save(insurance);
+    }
+    public int getTotalAmount(long userId) {
+        User user = this.userRepository.findById(userId).get();
+        List<Insurance> insurances = user.getInvestment().getInsurances();
+        int totalAmount = 0;
+        for(Insurance ins : insurances) totalAmount+=ins.getAmount();
+        return totalAmount;
     }
 }

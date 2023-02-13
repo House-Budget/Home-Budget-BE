@@ -1,5 +1,6 @@
 package com.homebudget.homebudget.service;
 
+import com.homebudget.homebudget.entity.Insurance;
 import com.homebudget.homebudget.entity.Investment;
 import com.homebudget.homebudget.entity.MutualFund;
 import com.homebudget.homebudget.entity.User;
@@ -43,6 +44,14 @@ public class MutualFundServices {
         mf.setName(updatedMutualFund.getName());
         mf.setAmount(updatedMutualFund.getAmount());
         return mutualRepository.save(mf);
+    }
+
+    public int getTotalAmount(long userId) {
+        User user = this.userRepository.findById(userId).get();
+        List<MutualFund> mfs = user.getInvestment().getMutualFunds();
+        int totalAmount = 0;
+        for(MutualFund mf : mfs) totalAmount+=mf.getAmount();
+        return totalAmount;
     }
 
 }

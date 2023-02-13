@@ -21,12 +21,7 @@ public class Insurance {
     private String name;
 
     @Column(nullable = false)
-    private int qty;
-    @Column(nullable = false)
     private int amount;
-
-    @Column(nullable = false)
-    private int totalAmount;
 
     @ManyToOne()
     @Getter(onMethod = @__(@JsonIgnore))

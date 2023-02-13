@@ -1,6 +1,7 @@
 package com.homebudget.homebudget.service;
 
 import com.homebudget.homebudget.entity.Investment;
+import com.homebudget.homebudget.entity.MutualFund;
 import com.homebudget.homebudget.entity.Stock;
 import com.homebudget.homebudget.entity.User;
 import com.homebudget.homebudget.repository.StockRepository;
@@ -47,6 +48,13 @@ public class StockService {
         stock.setName(updatedStock.getName());
         stock.setAmount(updatedStock.getAmount());
         return stockRepository.save(stock);
+    }
+    public int getTotalAmount(long userId) {
+        User user = this.userRepository.findById(userId).get();
+        List<Stock> stocks = user.getInvestment().getStocks();
+        int totalAmount = 0;
+        for(Stock st : stocks) totalAmount+=st.getAmount();
+        return totalAmount;
     }
 
 }
