@@ -22,7 +22,7 @@ public class MutualFund {
     @Column(nullable = false)
     private String name;
     @Column(nullable = false)
-    private long Amount;
+    private long amount;
 
     @ManyToOne
     @Getter(onMethod = @__(@JsonIgnore))
