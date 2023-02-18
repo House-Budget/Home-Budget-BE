@@ -31,7 +31,7 @@ public class InsuranceServices {
         return insurance;
     }
 
-    public List<Insurance> getAllInsuranceIdByUserId(Long userId) throws Exception{
+    public List<Insurance> getAllInsuranceByUserId(Long userId) throws Exception{
         User user = this.userRepository.findById(userId).orElseThrow(()-> new BadRequestException("User not found "+userId));
         Investment investment = user.getInvestment();
         return investment.getInsurances();
