@@ -1,44 +1,48 @@
 package com.homebudget.homebudget.controller;
 
 import com.homebudget.homebudget.entity.MutualFund;
-import com.homebudget.homebudget.entity.Stock;
-import com.homebudget.homebudget.repository.MutualRepository;
 import com.homebudget.homebudget.service.MutualFundServices;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
 import java.util.List;
 
 @RestController
 public class MutualFundsControllers {
-    @Autowired
-    private MutualRepository mutualRepository;
+
 
     @Autowired
     private MutualFundServices mutualFundServices;
+    
     @PostMapping("/user/{id}/mutual_fund")
-    public MutualFund saveMutualFund(@PathVariable Long id, @RequestBody MutualFund mf) throws Exception {
-        return mutualFundServices.saveMutualFund(id,mf);
+    public MutualFund saveMutualFund(@Valid @PathVariable long id, @RequestBody MutualFund mf) throws Exception {
+        return this.mutualFundServices.saveMutualFund(id,mf);
     }
 
     @GetMapping("/mutual_fund/{id}")
-    public ResponseEntity<MutualFund> getMutualFundById(@PathVariable Long id) throws Exception {
-        return ResponseEntity.ok(mutualFundServices.getMutual(id));
+    public ResponseEntity<MutualFund> getMutualFundById(@PathVariable long id) throws Exception {
+        return ResponseEntity.ok(this.mutualFundServices.getMutualFundById(id));
     }
 
     @GetMapping("/all_mutual_fund/{userId}")
-    public ResponseEntity<List<MutualFund>> getAllStockById(@PathVariable Long userId) throws Exception {
-        return ResponseEntity.ok(mutualFundServices.getAllMutualFundByUserId(userId));
+    public ResponseEntity<List<MutualFund>> getAllMutualFundByUserId(@PathVariable long userId) throws Exception {
+        return ResponseEntity.ok(this.mutualFundServices.getAllMutualFundByUserId(userId));
     }
     @PutMapping("/mutual_fund/{id}")
-    public ResponseEntity<MutualFund> updateMutualFund(@RequestBody MutualFund mf ,@PathVariable Long id) throws Exception {
-        return ResponseEntity.ok(mutualFundServices.updateMutualFund(id,mf));
+    public ResponseEntity<MutualFund> updateMutualFundById(@Valid @RequestBody MutualFund mf ,@PathVariable long id) throws Exception {
+        return ResponseEntity.ok(this.mutualFundServices.updateMutualFundById(id,mf));
     }
     @DeleteMapping("/del_mutual_fund/{id}")
-    public ResponseEntity<String> deleteStock(@PathVariable Long id) throws Exception {
-        mutualFundServices.deleteMutualFund(id);
+    public ResponseEntity<String> deleteMutualFundById(@PathVariable long id) throws Exception {
+        this.mutualFundServices.deleteMutualFundById(id);
         return ResponseEntity.ok("MutualFund deleted");
+    }
+
+    @GetMapping("/user/{userId}/mutual-fund/total")
+    public ResponseEntity<Long> getTotalMutualFund(@PathVariable long userId){
+        return ResponseEntity.ok(this.mutualFundServices.getTotalMutualFund(userId));
     }
 
 

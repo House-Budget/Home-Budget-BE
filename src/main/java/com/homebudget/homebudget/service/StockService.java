@@ -22,29 +22,29 @@ public class StockService {
     @Autowired
     private UserService userService;
 
-    public Stock saveStock( Long userId,Stock stock) throws Exception {
+    public Stock saveStock( long userId,Stock stock) throws Exception {
         User user = this.userRepository.findById(userId).orElseThrow(()-> new BadRequestException("User does not exist"));
         Investment investment  = user.getInvestment();
         stock.setInvestment(investment);
         return this.stockRepository.save(stock);
     }
 
-    public Stock getStock(Long stockId){
+    public Stock getStockById(long stockId){
         Stock stock = stockRepository.findById(stockId).orElseThrow(()-> new BadRequestException("Stock not found with id: " + stockId));
         return stock;
 
     }
 
-    public List<Stock> getAllStockByUserId(Long userId) throws Exception{
+    public List<Stock> getAllStockByUserId(long userId) throws Exception{
         User user = this.userRepository.findById(userId).orElseThrow(()-> new BadRequestException("User does not exist with id ,"+userId));
         Investment investment = user.getInvestment();
         return investment.getStocks();
     }
-    public void deleteStock(Long stockId) throws Exception {
+    public void deleteStock(long stockId) throws Exception {
         Stock stock = this.stockRepository.findById(stockId).orElseThrow(()-> new BadRequestException("stock with id"+stockId+" does not exist"));
         stockRepository.deleteById(stockId);
     }
-    public Stock updateStock(Long stockid, Stock updatedStock) throws Exception {
+    public Stock updateStock(long stockid, Stock updatedStock) throws Exception {
         Stock stock = this.stockRepository.findById(stockid).orElseThrow(()-> new BadRequestException("stock does not exist "+stockid));
         stock.setName(updatedStock.getName());
         stock.setAmount(updatedStock.getAmount());
