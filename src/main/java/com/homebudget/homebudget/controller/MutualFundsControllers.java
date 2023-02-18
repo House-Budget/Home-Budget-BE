@@ -15,7 +15,7 @@ public class MutualFundsControllers {
 
     @Autowired
     private MutualFundServices mutualFundServices;
-    
+
     @PostMapping("/user/{id}/mutual_fund")
     public MutualFund saveMutualFund(@Valid @PathVariable long id, @RequestBody MutualFund mf) throws Exception {
         return this.mutualFundServices.saveMutualFund(id,mf);
