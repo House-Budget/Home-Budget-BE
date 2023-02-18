@@ -1,9 +1,9 @@
 package com.homebudget.homebudget.service;
 
 import com.homebudget.homebudget.entity.Investment;
-import com.homebudget.homebudget.entity.MutualFund;
 import com.homebudget.homebudget.entity.Stock;
 import com.homebudget.homebudget.entity.User;
+import com.homebudget.homebudget.exceptions.BadRequestException;
 import com.homebudget.homebudget.repository.StockRepository;
 import com.homebudget.homebudget.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -29,9 +29,10 @@ public class StockService {
         return this.stockRepository.save(stock);
     }
 
-    public Stock getStock(Long stockId) throws Exception {
-        Stock stock = stockRepository.findById(stockId).orElse(null);
+    public Stock getStock(Long stockId){
+        Stock stock = stockRepository.findById(stockId).orElseThrow(()-> new BadRequestException("Stock not found with id: " + stockId));
         return stock;
+
     }
 
     public List<Stock> getAllStockByUserId(Long userId) throws Exception{

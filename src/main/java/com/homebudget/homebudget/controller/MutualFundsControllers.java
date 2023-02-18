@@ -17,25 +17,25 @@ public class MutualFundsControllers {
 
     @Autowired
     private MutualFundServices mutualFundServices;
-    @PostMapping("/user/{id}/mutualFund")
+    @PostMapping("/user/{id}/mutual_fund")
     public MutualFund saveMutualFund(@PathVariable Long id, @RequestBody MutualFund mf) throws Exception {
         return mutualFundServices.saveMutualFund(id,mf);
     }
 
-    @GetMapping("/mutualfund/{id}")
+    @GetMapping("/mutual_fund/{id}")
     public ResponseEntity<MutualFund> getMutualFundById(@PathVariable Long id) throws Exception {
         return ResponseEntity.ok(mutualFundServices.getMutual(id));
     }
 
-    @GetMapping("/allmutualfund/{userId}")
+    @GetMapping("/all_mutual_fund/{userId}")
     public ResponseEntity<List<MutualFund>> getAllStockById(@PathVariable Long userId) throws Exception {
         return ResponseEntity.ok(mutualFundServices.getAllMutualFundByUserId(userId));
     }
-    @PutMapping("/mutualfund/{id}")
+    @PutMapping("/mutual_fund/{id}")
     public ResponseEntity<MutualFund> updateMutualFund(@RequestBody MutualFund mf ,@PathVariable Long id) throws Exception {
         return ResponseEntity.ok(mutualFundServices.updateMutualFund(id,mf));
     }
-    @DeleteMapping("/del-mutualfund/{id}")
+    @DeleteMapping("/del_mutual_fund/{id}")
     public ResponseEntity<String> deleteStock(@PathVariable Long id) throws Exception {
         mutualFundServices.deleteMutualFund(id);
         return ResponseEntity.ok("MutualFund deleted");
