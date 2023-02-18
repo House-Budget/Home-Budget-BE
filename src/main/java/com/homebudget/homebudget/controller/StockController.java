@@ -18,9 +18,9 @@ public class StockController {
 
     @Autowired
     private StockService stockService;
-    @PostMapping("/user/{id}/stock")
-    public Stock saveStock(@Valid @PathVariable Long id, @RequestBody Stock stock) throws Exception {
-        return stockService.saveStock(id,stock);
+    @PostMapping("/user/{userId}/stock")
+    public Stock saveStock(@Valid @PathVariable Long userId, @RequestBody Stock stock) throws Exception {
+        return stockService.saveStock(userId,stock);
     }
 
     @GetMapping("/stocks/{id}")
@@ -29,22 +29,22 @@ public class StockController {
         return new ResponseEntity<>(stock, HttpStatus.OK);
     }
 
-    @GetMapping("/all_stocks/{userId}")
-    public ResponseEntity<List<Stock>> getAllStockById(@PathVariable Long userId) throws Exception {
+    @GetMapping("/user/{userId}/stocks")
+    public ResponseEntity<List<Stock>> getAllStockByUserId(@PathVariable Long userId) throws Exception {
         return ResponseEntity.ok(stockService.getAllStockByUserId(userId));
     }
     @PutMapping("/stocks/{id}")
     public ResponseEntity<Stock> updateStock(@Valid @RequestBody Stock stock ,@PathVariable Long id) throws Exception {
         return ResponseEntity.ok(stockService.updateStock(id,stock));
     }
-    @DeleteMapping("/del_stocks/{id}")
+    @DeleteMapping("/stocks/{id}")
     public ResponseEntity<String> deleteStock(@PathVariable Long id) throws Exception {
         stockService.deleteStock(id);
         return ResponseEntity.ok("Stock deleted");
     }
-    @GetMapping("/user/{uid}/total_stock_amt")
-    public int gettotalAmount(@PathVariable Long uid){
-        return stockService.getTotalAmount(uid);
+    @GetMapping("/user/{userId}/total_stock_amt")
+    public int getTotalAmount(@PathVariable Long userId){
+        return stockService.getTotalAmount(userId);
     }
 
 }

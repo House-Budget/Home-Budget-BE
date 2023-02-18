@@ -16,9 +16,9 @@ public class InsuranceController {
 
     @Autowired
     private InsuranceServices insuranceServices;
-    @PostMapping("/user/{id}/insurance")
-    public Insurance saveInsurance(@PathVariable Long id, @RequestBody Insurance insurance) throws Exception {
-        return insuranceServices.saveInsurance(id,insurance);
+    @PostMapping("/user/{userId}/insurance")
+    public Insurance saveInsurance(@PathVariable Long userId, @RequestBody Insurance insurance) throws Exception {
+        return insuranceServices.saveInsurance(userId,insurance);
     }
 
     @GetMapping("/insurance/{id}")
@@ -26,15 +26,15 @@ public class InsuranceController {
         return ResponseEntity.ok(insuranceServices.getInsurance(id));
     }
 
-    @GetMapping("/allinsurance/{userId}")
-    public ResponseEntity<List<Insurance>>getAllInsuranceById(@PathVariable Long userId) throws Exception {
+    @GetMapping("/user/{userId}/insurance")
+    public ResponseEntity<List<Insurance>>getAllInsuranceIdByUserId(@PathVariable Long userId) throws Exception {
         return ResponseEntity.ok(insuranceServices.getAllInsuranceIdByUserId(userId));
     }
     @PutMapping("/insurance/{id}")
     public ResponseEntity<Insurance> updateInsurance(@RequestBody Insurance insurance ,@PathVariable Long id) throws Exception {
         return ResponseEntity.ok(insuranceServices.updateInsurance(id,insurance));
     }
-    @DeleteMapping("/del-insurance/{id}")
+    @DeleteMapping("/insurance/{id}")
     public ResponseEntity<String> deleteInsurance(@PathVariable Long id) throws Exception {
         insuranceServices.deleteInsurance(id);
         return ResponseEntity.ok("insurance deleted");
