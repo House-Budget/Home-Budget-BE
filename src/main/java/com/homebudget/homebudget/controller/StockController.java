@@ -8,6 +8,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
 import java.util.List;
 
 @RestController
@@ -18,7 +19,7 @@ public class StockController {
     @Autowired
     private StockService stockService;
     @PostMapping("/user/{id}/stock")
-    public Stock saveStock(@PathVariable Long id, @RequestBody Stock stock) throws Exception {
+    public Stock saveStock(@Valid @PathVariable Long id, @RequestBody Stock stock) throws Exception {
         return stockService.saveStock(id,stock);
     }
 
@@ -33,7 +34,7 @@ public class StockController {
         return ResponseEntity.ok(stockService.getAllStockByUserId(userId));
     }
     @PutMapping("/stocks/{id}")
-    public ResponseEntity<Stock> updateStock(@RequestBody Stock stock ,@PathVariable Long id) throws Exception {
+    public ResponseEntity<Stock> updateStock(@Valid @RequestBody Stock stock ,@PathVariable Long id) throws Exception {
         return ResponseEntity.ok(stockService.updateStock(id,stock));
     }
     @DeleteMapping("/del_stocks/{id}")
